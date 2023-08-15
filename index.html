@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a2288264db.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <img class="logo" src="image-removebg-preview (15).png" alt="">
+
+        </div>
+        <h4 class="busque">Cadastre seus livros adquiridos</h4>
+        <div class="redes">
+            <img src="whatsapp.png" alt="">
+            <img src="instagram.png" alt="">
+            <img src="facebook.png" alt="">
+        </div>
+    </header>
+    <main>
+        <h2 class="titulo">Cadastre livros lidos ou que deseja!</h1>
+        <div id="tudo">
+        
+            <div class="formu">
+                <input id="nomeLivro" placeholder="Nome" type="text">
+                <input id="autorLivro" placeholder="Autor" type="text">
+                <input id="anoLivro" placeholder="Ano" type="number">
+                <div class="botoes">
+                    <button id="tres" onclick="adicionar()">Adicionar Livro</button>
+                    <button id="tres" onclick="mostrarLivros()">Mostrar</button>
+                    <button id="tres" onclick="apagarLivros()">Deletar</button>
+                   
+                </div> 
+                <p id="quantidadeLivros"></p>
+                    <p id="textoCadastro"></p>
+            </div>
+            <div class="carrossel">
+
+                <div class="botoes">
+                    <button class="bot" id="anterior"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                    <img class="img" id="carrosselImagem" src="" alt="Imagem do Carrossel">
+                    <button class="bot" id="proximo"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        let biblioteca = [];
+        const IMAGENS = ['image1.png', 'image2.png', 'image3.png', 'image4.png'];
+        let imagensAtivas = [];
+
+        function cadastro(nome, autor, ano) {
+            var livro = {
+                titulo: nome,
+                autor: autor,
+                ano: ano
+            };
+            biblioteca.push(livro);
+            atualizarQuantidadeLivros();
+
+            if (biblioteca.length <= IMAGENS.length) {
+                imagensAtivas.push(IMAGENS[biblioteca.length - 1]);
+                imgIndice = biblioteca.length - 1;
+                carregar();
+            }
+
+
+            document.querySelector('.carrossel').style.display = 'block';
+        }
+
+        function adicionar() {
+            let nome = document.getElementById('nomeLivro').value;
+            let autor = document.getElementById('autorLivro').value;
+            let ano = document.getElementById('anoLivro').value;
+            cadastro(nome, autor, ano);
+        }
+
+        function mostrarLivros() {
+            for (let x of biblioteca) {
+                console.log(x.titulo, x.autor, x.ano);
+            }
+        }
+
+        function apagarLivros() {
+            biblioteca.length = 0;
+            imagensAtivas.length = 0; // Limpa o carrossel
+            atualizarQuantidadeLivros();
+            document.querySelector('.carrossel').style.display = 'none';
+        }
+
+        function atualizarQuantidadeLivros() {
+            const quantidadeLivros = biblioteca.length;
+            const quantidadeLivrosText = quantidadeLivros === 1 ? '1 livro cadastrado' : `${quantidadeLivros} livros cadastrados`;
+            document.getElementById('quantidadeLivros').textContent = quantidadeLivrosText;
+
+            const textoCadastro = quantidadeLivros === 0 ? 'Cadastre um livro' : '';
+            document.getElementById('textoCadastro').textContent = textoCadastro;
+        }
+
+        let imgIndice = 0;
+        var IMG = document.getElementById('carrosselImagem');
+        function carregar(index = imgIndice) {
+            IMG.src = imagensAtivas[index];
+            imgIndice = index;
+        }
+        const prevButton = document.getElementById('anterior');
+        const nextButton = document.getElementById('proximo');
+
+        prevButton.addEventListener('click', () => {
+            if (imgIndice === 0) {
+                imgIndice = imagensAtivas.length - 1;
+            } else {
+                --imgIndice;
+            }
+            carregar();
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (imgIndice === imagensAtivas.length - 1) {
+                imgIndice = 0;
+            } else {
+                ++imgIndice;
+            }
+            carregar();
+        });
+    </script>
+</body>
+
+</html>

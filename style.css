@@ -1,0 +1,107 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'raleway';
+    src: url(static/Raleway-Light.ttf);
+}
+
+@font-face {
+    font-family: 'titulo';
+    src: url(static/Raleway-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'bold';
+    src: url(static/Raleway-Bold.ttf);
+}
+.carrossel {
+    display: none;
+}
+
+img{
+width: 255px;
+}
+
+
+
+header{
+    font-family: 'raleway';
+    font-weight: 100;
+    background-color:#ffff00;
+    display: flex;
+        height: 80px;
+        justify-content: space-around;
+    align-items: center;
+}
+
+.logo{
+     width: 186px;
+    
+}
+
+.busque{
+    font-size: 20px;
+}
+.redes img{
+    width: 28px;
+}
+
+.titulo{
+font-family: 'titulo';
+color: #3a3636;
+text-align: center;
+padding-top: 8%;
+}
+
+.formu{
+    display: grid;
+}
+
+input {
+    background-color: white;
+    width: 398px;
+    margin: 8px;
+    height: 48px;
+    border-radius: 15px;
+    border: 2px gray solid;
+}
+
+#tres {
+    border-radius: 18px;
+    font-family: 'bold';
+    width: 123px;
+    height: 34px;
+    margin: 8px;
+    background-color: #ffff00;
+}
+
+.botoes{
+    display: flex;
+}
+
+.bot{
+    border-radius: 50px;
+    background-color: white;
+    padding: 20px;
+}
+
+#tudo{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 3%;
+}
+
+#quantidadeLivros, #textoCadastrado{
+    font-family: 'titulo';
+    font-size: 18px;
+}
+
+.fa-solid{
+    font-size:30px;
+    /* width: 100px; */
+    cursor: pointer;
+}
